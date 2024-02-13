@@ -13,11 +13,13 @@ namespace GerenciadorTarefas.Domain.Entities
         public Status Status { get; set; }
         public Prioridade Prioridade { get; set; }
 
-        public Tarefa(int id, 
-                        string titulo, 
-                        string descricao, 
-                        DateTime dataVencimento, 
-                        Status status, 
+        public Tarefa() { }
+
+        public Tarefa(int id,
+                        string titulo,
+                        string descricao,
+                        DateTime dataVencimento,
+                        Status status,
                         Prioridade prioridade)
         {
             Id = id;
