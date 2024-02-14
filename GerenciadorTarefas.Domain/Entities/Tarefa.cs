@@ -9,9 +9,13 @@ namespace GerenciadorTarefas.Domain.Entities
         public string Descricao { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime DataVencimento { get; set; }
-
         public Status Status { get; set; }
         public Prioridade Prioridade { get; set; }
+
+
+        //Relacionamento
+        public Projeto Projeto { get; set; }
+        public int ProjetoId { get; set; }
 
         public Tarefa() { }
 
