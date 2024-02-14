@@ -13,29 +13,44 @@ namespace GerenciadorTarefas.Infra.Repository
             _context = context;
         }
 
-        public Task<IEnumerable<Tarefa>> ObterTodasTarefasDoProjetoAsync(int? id)
+        public async Task<IEnumerable<Tarefa>> ObterTodasTarefasDoProjetoAsync(int? id)
         {
-            throw new NotImplementedException();
+            var projeto = await _context.Projetos.FindAsync(id);
+
+            return projeto.Tarefas;
         }
 
-        public Task<Tarefa> ObterTarefaAsync(int? id)
+        public async Task<Tarefa> ObterTarefaAsync(int? id)
         {
-            throw new NotImplementedException();
+            var tarefa = await _context.Tarefas.FindAsync(id);
+
+            return tarefa;
         }
 
-        public Task<Tarefa> CriarTarefaAsync(Tarefa tarefa)
+        public async Task<Tarefa> CriarTarefaAsync(Tarefa tarefa)
         {
-            throw new NotImplementedException();
+            _context.Add(tarefa);
+            await _context.SaveChangesAsync();
+
+            return tarefa;
         }
 
-        public Task<Tarefa> AtualizarTarefaAsync(int? id)
+        public async Task<Tarefa> AtualizarTarefaAsync(int? id)
         {
-            throw new NotImplementedException();
+            var tarefa = _context.Tarefas.FirstOrDefault(x => x.Id == id);
+
+            _context.Update(tarefa);
+            await _context.SaveChangesAsync();
+
+            return tarefa;
         }
 
-        public Task RemoverTarefa(int? id)
+        public async Task RemoverTarefa(int? id)
         {
-            throw new NotImplementedException();
+            var tarefa = await _context.Tarefas.FindAsync(id);
+            _context.Tarefas.Remove(tarefa);
+
+            await _context.SaveChangesAsync();
         }
     }
 }
