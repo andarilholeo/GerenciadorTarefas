@@ -1,6 +1,7 @@
 ﻿using GerenciadorTarefas.Domain.Entities;
 using GerenciadorTarefas.Domain.Interfaces;
 using GerenciadorTarefas.Infra.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace GerenciadorTarefas.Infra.Repository
 {
@@ -15,32 +16,44 @@ namespace GerenciadorTarefas.Infra.Repository
 
         public async Task<IEnumerable<Projeto>> ObterTodosProjetosDoUsuario()
         {
-            throw new NotImplementedException();
+            return await _context.Projetos.ToListAsync();
         }
 
         public async Task<Projeto> ObterProjeto(int? id)
         {
-            throw new NotImplementedException();
+            return await _context.Projetos.FindAsync(id);
         }
 
         public async Task<Projeto> ObterProjetoPorNome(string projectName)
         {
-            throw new NotImplementedException();
+            var projeto = await _context.Projetos.Where(x => x.Nome.ToLower().Contains(projectName.ToLower())).ToListAsync();
+            return projeto.First();
         }
 
         public async Task<Projeto> CriarProjetoAsync(Projeto projeto)
         {
-            throw new NotImplementedException();
+            _context.Add(projeto);
+            await _context.SaveChangesAsync();
+
+            return projeto;
         }
 
         public async Task<Projeto> AtualizarProjetoAsync(int? id)
         {
-            throw new NotImplementedException();
+            var projeto = _context.Projetos.FirstOrDefault(x => x.Id == id);
+
+            _context.Update(projeto);
+            await _context.SaveChangesAsync();
+
+            return projeto;
         }
 
         public async Task DeletarProjetoAsync(int? id)
         {
-            throw new NotImplementedException();
+            var projeto = await _context.Projetos.FindAsync(id);
+            _context.Projetos.Remove(projeto);
+
+            await _context.SaveChangesAsync();
         }
     }
 }
