@@ -14,8 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(
     options =>
     {
         options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
-            ServerVersion.Parse("8.0.36"), 
-            b => b.MigrationsAssembly("GerenciadorTarefas.API"));
+            ServerVersion.Parse("8.0.36"));
     });
 
 var app = builder.Build();

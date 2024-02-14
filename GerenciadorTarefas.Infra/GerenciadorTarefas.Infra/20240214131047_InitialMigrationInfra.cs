@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace GerenciadorTarefas.API.Migrations
+namespace GerenciadorTarefas.Infra.GerenciadorTarefas.Infra
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialMigrationInfra : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
