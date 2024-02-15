@@ -8,7 +8,7 @@ namespace GerenciadorTarefas.Domain.Interfaces
         Task<Projeto> ObterProjeto(int? id);
         Task<Projeto> ObterProjetoPorNome(string projectName);
         Task<Projeto> CriarProjetoAsync(Projeto projeto);
-        Task<Projeto> AtualizarProjetoAsync(int? id);
+        Task<Projeto> AtualizarProjetoAsync(Projeto projetoAtualizado);
         Task DeletarProjetoAsync(int? id);
     }
 }

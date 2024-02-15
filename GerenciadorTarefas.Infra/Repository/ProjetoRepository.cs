@@ -38,12 +38,15 @@ namespace GerenciadorTarefas.Infra.Repository
             return projeto;
         }
 
-        public async Task<Projeto> AtualizarProjetoAsync(int? id)
+        public async Task<Projeto> AtualizarProjetoAsync(Projeto projeto)
         {
-            var projeto = _context.Projetos.FirstOrDefault(x => x.Id == id);
+            var projetoAtualizar = _context.Projetos.AsNoTracking().FirstOrDefault(x => x.Id == projeto.Id);
 
-            _context.Update(projeto);
-            await _context.SaveChangesAsync();
+            if(projetoAtualizar is not null)
+            {
+                _context.Update(projeto);
+                await _context.SaveChangesAsync();
+            }
 
             return projeto;
         }
