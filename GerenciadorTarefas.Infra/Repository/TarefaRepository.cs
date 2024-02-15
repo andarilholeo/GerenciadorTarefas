@@ -1,6 +1,7 @@
 ﻿using GerenciadorTarefas.Domain.Entities;
 using GerenciadorTarefas.Domain.Interfaces;
 using GerenciadorTarefas.Infra.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace GerenciadorTarefas.Infra.Repository
 {
@@ -20,6 +21,13 @@ namespace GerenciadorTarefas.Infra.Repository
             return projeto.Tarefas;
         }
 
+        public async Task<IEnumerable<Tarefa>> ObterTodasAsTarefas()
+        {
+            var tarefas = await _context.Tarefas.ToListAsync();
+
+            return tarefas;
+        }
+
         public async Task<Tarefa> ObterTarefaAsync(int? id)
         {
             var tarefa = await _context.Tarefas.FindAsync(id);
@@ -35,9 +43,9 @@ namespace GerenciadorTarefas.Infra.Repository
             return tarefa;
         }
 
-        public async Task<Tarefa> AtualizarTarefaAsync(int? id)
+        public async Task<Tarefa> AtualizarTarefaAsync(Tarefa? tarefa)
         {
-            var tarefa = _context.Tarefas.FirstOrDefault(x => x.Id == id);
+            var tarefaAtualizar = _context.Tarefas.AsNoTracking().FirstOrDefault(x => x.Id == tarefa.Id);
 
             _context.Update(tarefa);
             await _context.SaveChangesAsync();

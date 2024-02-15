@@ -11,5 +11,13 @@ namespace GerenciadorTarefas.Infra.Context
 
         public DbSet<Projeto> Projetos { get; set; }
         public DbSet<Tarefa> Tarefas { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Projeto>()
+                .HasMany(p => p.Tarefas)
+                .WithOne(t => t.Projeto)
+                .HasForeignKey(t => t.ProjetoId);
+        }
     }
 }

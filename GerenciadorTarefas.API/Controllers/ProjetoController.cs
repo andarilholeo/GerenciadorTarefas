@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GerenciadorTarefas.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ProjetoController : ControllerBase
     {
@@ -21,18 +21,18 @@ namespace GerenciadorTarefas.API.Controllers
             var projetos = await _projetoRepository.ObterTodosProjetosDoUsuario();
 
             if (projetos is null)
-                return NotFound("Categories not Found");
+                return NotFound("Projetos não encontrados");
 
             return Ok(projetos);
         }
 
-        [HttpGet("{id:int}", Name = "Getprojeto")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<Projeto>> ObterProjetoId(int? id)
         {
             var projeto = await _projetoRepository.ObterProjeto(id);
 
             if (projeto is null)
-                return NotFound("projeto not Found");
+                return NotFound("projeto não encontrado");
 
             return Ok(projeto);
         }
@@ -49,19 +49,16 @@ namespace GerenciadorTarefas.API.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> Updateprojeto(int? id, [FromBody] Projeto projeto)
+        public async Task<ActionResult> Updateprojeto([FromBody] Projeto projeto)
         {
-            if (id != projeto.Id)
-                return BadRequest();
-
             if (projeto == null)
                 return BadRequest();
 
-            await _projetoRepository.AtualizarProjetoAsync(id);
+            await _projetoRepository.AtualizarProjetoAsync(projeto);
             return Ok(projeto);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public async Task<ActionResult> Deleteprojeto(int id)
         {
             var projeto = await _projetoRepository.ObterProjeto(id);
