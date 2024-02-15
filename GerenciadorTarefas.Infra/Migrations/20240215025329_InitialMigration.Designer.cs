@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace GerenciadorTarefas.Infra.GerenciadorTarefas.Infra
+namespace GerenciadorTarefas.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240214135234_AddRelationship")]
-    partial class AddRelationship
+    [Migration("20240215025329_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

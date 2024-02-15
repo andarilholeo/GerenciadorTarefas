@@ -16,12 +16,17 @@ namespace GerenciadorTarefas.Infra.Repository
 
         public async Task<IEnumerable<Projeto>> ObterTodosProjetosDoUsuario()
         {
-            return await _context.Projetos.ToListAsync();
+            return await _context.Projetos
+                .Include(t => t.Tarefas)
+                .ToListAsync();
         }
 
         public async Task<Projeto> ObterProjeto(int? id)
         {
-            return await _context.Projetos.FindAsync(id);
+            return await _context.Projetos
+                .Include(p => p.Tarefas)
+                .Where(p => p.Id == id)
+                .FirstOrDefaultAsync();
         }
 
         public async Task<Projeto> ObterProjetoPorNome(string projectName)
