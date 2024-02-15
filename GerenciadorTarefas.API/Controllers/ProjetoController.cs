@@ -45,7 +45,7 @@ namespace GerenciadorTarefas.API.Controllers
 
             await _projetoRepository.CriarProjetoAsync(projeto);
 
-            return new CreatedAtRouteResult("Getprojeto", new { id = projeto.Id }, projeto);
+            return Ok(projeto);
         }
 
         [HttpPut]

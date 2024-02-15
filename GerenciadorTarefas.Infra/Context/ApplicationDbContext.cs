@@ -14,9 +14,9 @@ namespace GerenciadorTarefas.Infra.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Projeto>()
-                .HasMany(p => p.Tarefas)
-                .WithOne(t => t.Projeto)
+            modelBuilder.Entity<Tarefa>()
+                .HasOne<Projeto>(t => t.Projeto)
+                .WithMany(p => p.Tarefas)
                 .HasForeignKey(t => t.ProjetoId);
         }
     }

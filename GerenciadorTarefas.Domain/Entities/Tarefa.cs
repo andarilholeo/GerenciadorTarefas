@@ -28,8 +28,9 @@ namespace GerenciadorTarefas.Domain.Entities
 
 
         //Relacionamento
-        [JsonPropertyName("projeto")]
-        public Projeto Projeto { get; set; }
+        [JsonIgnore][JsonPropertyName("projeto")]
+        public Projeto? Projeto { get; set; }
+
         [JsonPropertyName("projetoid")]
         public int ProjetoId { get; set; }
 

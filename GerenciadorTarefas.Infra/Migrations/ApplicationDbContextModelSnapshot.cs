@@ -3,18 +3,16 @@ using System;
 using GerenciadorTarefas.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace GerenciadorTarefas.Infra.GerenciadorTarefas.Infra
+namespace GerenciadorTarefas.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240214131047_InitialMigrationInfra")]
-    partial class InitialMigrationInfra
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,7 +53,7 @@ namespace GerenciadorTarefas.Infra.GerenciadorTarefas.Infra
                     b.Property<int>("Prioridade")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProjetoId")
+                    b.Property<int>("ProjetoId")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -74,9 +72,13 @@ namespace GerenciadorTarefas.Infra.GerenciadorTarefas.Infra
 
             modelBuilder.Entity("GerenciadorTarefas.Domain.Entities.Tarefa", b =>
                 {
-                    b.HasOne("GerenciadorTarefas.Domain.Entities.Projeto", null)
+                    b.HasOne("GerenciadorTarefas.Domain.Entities.Projeto", "Projeto")
                         .WithMany("Tarefas")
-                        .HasForeignKey("ProjetoId");
+                        .HasForeignKey("ProjetoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Projeto");
                 });
 
             modelBuilder.Entity("GerenciadorTarefas.Domain.Entities.Projeto", b =>
