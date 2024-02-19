@@ -1,4 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+ENV ASPNETCORE_ENVIRONMENT=Development
 WORKDIR /app
 
 COPY GerenciadorTarefas.API/*.csproj ./GerenciadorTarefas.API/
@@ -16,7 +17,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 
 COPY --from=build-env /app/GerenciadorTarefas.API/out .
-
-EXPOSE 80
-
-ENTRYPOINT ["dotnet", "GerenciadorTarefas.API.dll"]
+ENTRYPOINT ["dotnet", "GerenciadorTarefas.API.dll", "--environment=Development"]
