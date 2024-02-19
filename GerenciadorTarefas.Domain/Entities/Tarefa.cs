@@ -32,7 +32,7 @@ namespace GerenciadorTarefas.Domain.Entities
         public Projeto? Projeto { get; set; }
 
         [JsonPropertyName("projetoid")]
-        public int ProjetoId { get; set; }
+        public int? ProjetoId { get; set; }
 
         public Tarefa() { }
 

@@ -1,6 +1,7 @@
 ﻿using GerenciadorTarefas.Domain.Entities;
 using GerenciadorTarefas.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GerenciadorTarefas.API.Controllers
 {
@@ -9,10 +10,12 @@ namespace GerenciadorTarefas.API.Controllers
     public class ProjetoController : ControllerBase
     {
         private readonly IProjetoRepository _projetoRepository;
+        private readonly ITarefaRepository _tarefaRepository;
 
-        public ProjetoController(IProjetoRepository projetoRepository)
+        public ProjetoController(IProjetoRepository projetoRepository, ITarefaRepository tarefaRepository)
         {
             _projetoRepository = projetoRepository;
+            _tarefaRepository = tarefaRepository;
         }
 
         [HttpGet]
@@ -67,6 +70,32 @@ namespace GerenciadorTarefas.API.Controllers
 
             await _projetoRepository.DeletarProjetoAsync(id);
             return Ok();
+        }
+
+
+        [HttpPut]
+        public async Task<ActionResult> AdicionarTarefasAoProjeto(int? idProjeto, int? idTarefa)
+        {
+            var projeto = await _projetoRepository.ObterProjeto(idProjeto);
+            var tarefa = await _tarefaRepository.ObterTarefaAsync(idTarefa);
+
+            if (projeto is not null && tarefa is not null)
+            {
+                if (projeto.Tarefas.Count() > 20)
+                {
+                    throw new InvalidOperationException("O projeto já possui 20 ou mais tarefas. Não é possível adicionar mais.");
+                }
+
+                projeto.Tarefas.Append(tarefa);
+
+                await _projetoRepository.AtualizarProjetoAsync(projeto);
+            }
+            else
+            {
+                throw new InvalidOperationException("Não foi possível adicionar uma tarefa a um projeto");
+            }
+
+            return Ok("Tarefa adicionado com sucesso");
         }
     }
 }

@@ -47,7 +47,7 @@ namespace GerenciadorTarefas.Infra.Repository
         {
             var projetoAtualizar = _context.Projetos.AsNoTracking().FirstOrDefault(x => x.Id == projeto.Id);
 
-            if(projetoAtualizar is not null)
+            if (projetoAtualizar is not null)
             {
                 _context.Update(projeto);
                 await _context.SaveChangesAsync();
