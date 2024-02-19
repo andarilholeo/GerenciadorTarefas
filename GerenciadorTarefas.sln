@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefas.Domain",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefas.Infra", "GerenciadorTarefas.Infra\GerenciadorTarefas.Infra.csproj", "{29EC855C-E8E4-4F3B-AD77-A75B9AB646DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefas.Testes", "GerenciadorTarefas.Testes\GerenciadorTarefas.Testes.csproj", "{A4DA7D07-9FAD-4044-B0F1-8AEE90A34E42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefas.API", "GerenciadorTarefas.API\GerenciadorTarefas.API.csproj", "{34041599-2019-43D0-A919-291072EE0C14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciadorTarefas.API", "GerenciadorTarefas.API\GerenciadorTarefas.API.csproj", "{34041599-2019-43D0-A919-291072EE0C14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciadorTarefas.Test", "GerenciadorTarefas.Test\GerenciadorTarefas.Test.csproj", "{C757BEB0-E41F-45CC-9FF0-4F0CCD24368F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,14 @@ Global
 		{29EC855C-E8E4-4F3B-AD77-A75B9AB646DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29EC855C-E8E4-4F3B-AD77-A75B9AB646DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29EC855C-E8E4-4F3B-AD77-A75B9AB646DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A4DA7D07-9FAD-4044-B0F1-8AEE90A34E42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4DA7D07-9FAD-4044-B0F1-8AEE90A34E42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A4DA7D07-9FAD-4044-B0F1-8AEE90A34E42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A4DA7D07-9FAD-4044-B0F1-8AEE90A34E42}.Release|Any CPU.Build.0 = Release|Any CPU
 		{34041599-2019-43D0-A919-291072EE0C14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{34041599-2019-43D0-A919-291072EE0C14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34041599-2019-43D0-A919-291072EE0C14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34041599-2019-43D0-A919-291072EE0C14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C757BEB0-E41F-45CC-9FF0-4F0CCD24368F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C757BEB0-E41F-45CC-9FF0-4F0CCD24368F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C757BEB0-E41F-45CC-9FF0-4F0CCD24368F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C757BEB0-E41F-45CC-9FF0-4F0CCD24368F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
